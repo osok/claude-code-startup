@@ -1,0 +1,132 @@
+# Claude Code Sub-Agents Project
+
+## Project Overview
+
+A collection of specialized sub-agents designed to assist with application design, testing, deployment, and enhancement workflows.
+
+---
+
+## Current Work
+
+<!-- This section tracks active work. Clear when complete. -->
+
+**Seq:** 002
+**Name:** task-orchestration
+**Status:** Requirements
+
+**Current:** Drafting requirements for Task Manager orchestration capabilities
+
+---
+
+## Sub-Agent Index
+
+<!-- Populated as agents are designed and built -->
+
+| Agent Name | Purpose | Status | Docs |
+|------------|---------|--------|------|
+| Requirements | Interactive requirements elicitation (ISO/IEC/IEEE 29148) | Defined | .claude/agents/requirements.md |
+| Task Manager | Orchestrates workflow, tracks tasks, handles inter-agent requests | Defined | .claude/agents/task-manager.md |
+| Architect | Architectural decisions, ADRs, project-wide standards | Defined | .claude/agents/architect.md |
+| Designer | Design docs from requirements (IEEE 1016, mermaid UML) | Defined | .claude/agents/designer.md |
+| Test Designer | Plans tests based on architecture and design | Defined | .claude/agents/test-designer.md |
+| Data Agent | Schemas as source of truth, data dictionaries, migrations | Defined | .claude/agents/data-agent.md |
+| Deployment | Environment config, docker compose, AWS CDK | Defined | .claude/agents/deployment.md |
+| Developer | Implements code following project conventions | Defined | .claude/agents/developer.md |
+| Test Coder | Writes test code (unit, integration, E2E) | Defined | .claude/agents/test-coder.md |
+| Test Runner | Executes tests, debugs failures, routes issues | Defined | .claude/agents/test-runner.md |
+| Documentation | User docs, developer docs, code documentation | Defined | .claude/agents/documentation.md |
+
+---
+
+## Project Documentation
+
+### Naming Convention
+```
+{seq}-{doc type}-{short name}.md
+```
+
+### Document Sequence Tracker
+
+| Seq | Short Name | Requirements | Design | Task List | Status |
+|-----|------------|--------------|--------|-----------|--------|
+| 001 | dev-agents | Approved | Approved | Complete | Done |
+| 002 | task-orchestration | Draft | - | - | Requirements |
+
+---
+
+## Key Decisions & Concepts
+
+<!-- Important architectural decisions, patterns, or concepts to remember -->
+
+1. **Bootstrap Build** - 001-dev-agents built manually. Agents don't invoke other agents during this build. Workflow applies to future projects using these agents.
+2. **Single Designer Agent** - One Designer agent (not separate design + UML). Outputs `{seq}-design-{short-name}.md` with full UML.
+3. **Developer Agent with Convention Files** - One Developer agent that loads language-specific `conventions/{language}.md` files. Simplifies maintenance.
+4. **Mid-Task Work Requests** - Agents can request work mid-task. Task Manager queues, prioritizes, resumes. Preserves context.
+5. **Schemas as Source of Truth** - Data Agent maintains schemas in `project-docs/schemas/`. All developers reference these.
+6. **Test Runner Routing** - App code issues → Designer → Data Agent → Developer chain. Test code issues → Test Coder.
+7. **Task Manager as Sole Writer** - Task Manager is the ONLY agent that modifies the task list. Other agents return structured output; Task Manager parses and updates state. Document-only orchestration, no MCP needed.
+
+---
+
+## Available Tools Reference
+
+<!-- Tools available to sub-agents - to be documented as we understand the scope -->
+
+*To be populated during design phase.*
+
+---
+
+## Folder Structure
+
+```
+sub-agents/
+├── .claude/
+│   └── agents/            # Sub-agent definitions
+├── Claude.md              # This file - project index and memory
+├── conventions/           # Language-specific coding conventions
+├── developer-docs/        # Documentation for project contributors
+├── user-docs/             # Documentation for users of the agents
+└── project-docs/
+    ├── adrs/              # Architecture Decision Records
+    ├── schemas/           # Data schemas (source of truth)
+    └── *.md               # Requirements, designs, task lists
+```
+
+---
+
+## Working Principles
+
+- Blunt, honest feedback over false agreement
+- Right matters more than feelings
+- Keep markdown lean and concise - enough for correct intent, no more
+- Document decisions and rationale
+
+---
+
+## Commands
+
+| Command | Meaning |
+|---------|---------|
+| `continue` | Resume current work using task-list to determine next tasks |
+
+---
+
+## Task List Format
+
+Task lists are created by reviewing requirements and design docs. Each task includes:
+
+| Column | Description |
+|--------|-------------|
+| ID | Sequential task identifier (T001, T002...) |
+| Task | Concise task name |
+| Deps | Task IDs this depends on (or `-` if none) |
+| Refs | Line numbers from requirements (R:) and design (D:) docs |
+| Notes | Brief context to assist developer |
+
+Example:
+```
+| ID | Task | Deps | Refs | Notes |
+|----|------|------|------|-------|
+| T001 | Create agent base class | - | R:12-15, D:8-20 | Abstract class with execute() method |
+| T002 | Implement config loader | T001 | R:18, D:25-30 | YAML parsing for agent settings |
+```
