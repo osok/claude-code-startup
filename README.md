@@ -50,30 +50,38 @@ your-project/
 
 ## Setup
 
-### 1. Create Your Project
+### 1. Create Your Project from Template
+
+**Option A: GitHub Web UI**
+
+1. Click the green **"Use this template"** button at the top of the repository
+2. Select **"Create a new repository"**
+3. Name your repository and click **"Create repository"**
+4. Clone your new repository locally:
+   ```bash
+   git clone https://github.com/YOUR-USERNAME/your-new-project.git
+   cd your-new-project
+   ```
+
+**Option B: GitHub CLI**
 
 ```bash
-mkdir my-new-project
+gh repo create my-new-project --template osok/claude-code-startup --clone
 cd my-new-project
 ```
 
-### 2. Copy Template Files
-
-Clone or download this repository, then copy the following to your project:
+**Option C: Manual Clone**
 
 ```bash
-# Copy the .claude agents folder
-cp -r claude-code-startup/.claude .
-
-# Copy conventions
-cp -r claude-code-startup/conventions .
-
-# Copy the project structure
-cp claude-code-startup/Claude.md .
-mkdir -p developer-docs user-docs project-docs/adrs project-docs/schemas
+git clone https://github.com/osok/claude-code-startup.git my-new-project
+cd my-new-project
+rm -rf .git
+git init
+git add .
+git commit -m "Initial commit from claude-code-startup template"
 ```
 
-### 3. Customize Claude.md
+### 2. Customize Claude.md
 
 Edit `Claude.md` to reflect your project:
 
@@ -82,15 +90,15 @@ Edit `Claude.md` to reflect your project:
 3. Reset the "Document Sequence Tracker" table
 4. Add project-specific decisions to "Key Decisions & Concepts"
 
-### 4. Create Initial Requirements
+### 3. Create Initial Requirements
 
-Create your first requirements document:
+In Claude Code, describe what you want to build:
 
-```bash
-touch project-docs/001-requirements-{your-feature}.md
+```
+I want to create requirements for a user authentication system
 ```
 
-Update `Claude.md` with the new sequence entry.
+The Requirements agent will interactively gather requirements and create the document for you.
 
 ## Usage
 
