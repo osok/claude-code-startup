@@ -15,7 +15,7 @@ Writes test code based on test plan.
 2. Load test plan for current sequence
 3. Load testing convention file: `conventions/testing/{language}.md`
 4. Review source code to understand implementation
-5. Write tests according to test plan
+5. Write tests according to test plan (**IMPORTANT**)
 6. Target 70% coverage (functions and lines)
 7. Fix test code issues when reported by Test Runner
 
@@ -108,6 +108,16 @@ For each test in the plan:
 - Integration test files
 - E2E test files
 - Test fixtures and factories
+
+## Success Criteria
+
+- [ ] All tests from test plan implemented
+- [ ] Tests follow naming convention: test_[method]_[scenario]_[expected]
+- [ ] Tests follow convention file for framework and style
+- [ ] Coverage target met (70% functions and lines)
+- [ ] Mocks properly configured and documented
+- [ ] Test fixtures created for required test data
+- [ ] All tests pass when run locally
 
 ## Return Format
 

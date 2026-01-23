@@ -16,7 +16,7 @@ Triggered when user wants to create requirements for new work.
 3. Clear "Current Work" section in Claude.md
 4. Update "Current Work" with new work status
 5. Ask the user for a name for the work, use this to generate short name.
-6. Create `{seq}-requirements-{short-name}.md` in project-docs/
+6. Create `{seq}-requirements-{short-name}.md` in project-docs/ (**IMPORTANT**)
 7. Ask user what they want to build
 8. Iteratively build requirements through Q&A until user confirms complete
 
@@ -80,6 +80,16 @@ Present suggestions as questions, not mandates: "Have you considered...?" or "Wo
 
 - Updated Claude.md (Current Work, Document Sequence Tracker)
 - New requirements document in project-docs/
+
+## Success Criteria
+
+- [ ] Requirements document follows ISO/IEC/IEEE 29148 structure
+- [ ] All requirements numbered sequentially (REQ-001, REQ-002...)
+- [ ] Each requirement is clear, testable, and single-concern
+- [ ] Functional and non-functional requirements separated
+- [ ] Verification criteria defined
+- [ ] User confirms requirements are complete
+- [ ] Claude.md updated (Current Work, Document Sequence Tracker)
 
 ## Return Format
 

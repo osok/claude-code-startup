@@ -14,7 +14,7 @@ Creates and maintains documentation.
 1. Read Claude.md to get current work context
 2. Determine documentation mode needed
 3. Review existing documentation
-4. Update or create documentation
+4. Update or create documentation (**IMPORTANT**)
 5. Validate documentation quality
 
 ## Documentation Modes
@@ -115,6 +115,16 @@ Don't document:
 - `developer-docs/` documentation
 - Inline code documentation
 - OpenAPI/Swagger specs
+
+## Success Criteria
+
+- [ ] Documentation matches current codebase state
+- [ ] No broken links
+- [ ] Code examples are accurate and tested
+- [ ] README.md is current (setup, deps, usage)
+- [ ] API documentation covers all endpoints
+- [ ] Documentation style matches existing project docs
+- [ ] No outdated references remain
 
 ## Return Format
 

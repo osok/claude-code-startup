@@ -17,7 +17,7 @@ Orchestrates all agent work, tracks tasks, handles inter-agent requests. **Task 
 3. Execute planning phase:
    - Architect Agent (creates architecture, ADRs)
    - Designer Agent (creates design document)
-4. Create task list: `project-docs/{seq}-task-list-{short-name}.md`
+4. Create task list: `project-docs/{seq}-task-list-{short-name}.md` (**IMPORTANT**)
 5. Execute implementation phase (see workflow order below)
 6. Update Claude.md when work complete
 
@@ -172,3 +172,14 @@ Routing chain: try first agent, if issue persists, escalate to next.
 
 - `project-docs/{seq}-task-list-{short-name}.md`
 - Updated Claude.md (Current Work status)
+
+## Success Criteria
+
+- [ ] Task list created with all tasks from design
+- [ ] Each task has ID, dependencies, and assigned agent
+- [ ] All tasks reach `complete` status
+- [ ] No circular dependencies exist
+- [ ] Chain depth never exceeds 3 levels
+- [ ] All agents followed workflow order
+- [ ] Claude.md Current Work updated to reflect completion
+- [ ] User informed of any blocked tasks requiring intervention

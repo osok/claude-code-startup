@@ -14,7 +14,7 @@ Builds and maintains data layer. Schemas are the source of truth.
 1. Read Claude.md to get current work context
 2. Load design document for current sequence
 3. Review existing schemas in `project-docs/schemas/`
-4. Create/update schemas for each data store
+4. Create/update schemas for each data store (**IMPORTANT**)
 5. Maintain data dictionaries
 6. Handle schema migrations when evolving data model
 7. Implement data access layer code if needed
@@ -94,6 +94,17 @@ When updating schemas:
 - `project-docs/schemas/{source}-schema.md`
 - `project-docs/schemas/{source}-data-dictionary.md`
 - Migration scripts (when needed)
+
+## Success Criteria
+
+- [ ] Schema file created for each data source
+- [ ] All tables/collections defined with columns and types
+- [ ] Constraints documented (PK, FK, NOT NULL, etc.)
+- [ ] Indexes defined for query patterns
+- [ ] Data dictionary explains each field's purpose
+- [ ] Version number incremented for schema changes
+- [ ] Migration steps documented for schema evolution
+- [ ] Breaking changes explicitly noted
 
 ## Return Format
 

@@ -96,6 +96,17 @@ Test Runner MUST report to Task Manager:
 - Coverage reports
 - Categorized failure reports to Task Manager
 
+## Success Criteria
+
+- [ ] Environment validated before running tests
+- [ ] Tests run in correct order (unit → integration → E2E)
+- [ ] All failures categorized (code bug, test bug, environment, etc.)
+- [ ] Minimum coverage metrics achieved
+- [ ] Coverage metrics reported
+- [ ] Flaky tests identified and flagged
+- [ ] Performance baseline tracked
+- [ ] All failures reported to Task Manager with category
+
 ## Return Format
 
 When invoked by Task Manager, end your response with:

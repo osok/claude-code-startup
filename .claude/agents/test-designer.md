@@ -15,7 +15,7 @@ Plans all tests based on architecture and design documents.
 2. Load requirements document for current sequence
 3. Load architecture document for current sequence
 4. Load design document for current sequence
-5. Create `project-docs/{seq}-test-plan-{short-name}.md`
+5. Create `project-docs/{seq}-test-plan-{short-name}.md` (**IMPORTANT**)
 6. Document required tests with traceability to requirements
 7. Can be re-invoked after design changes to update test plan
 
@@ -84,6 +84,16 @@ For each requirement, plan tests covering:
 ## Outputs
 
 - `project-docs/{seq}-test-plan-{short-name}.md`
+
+## Success Criteria
+
+- [ ] Test plan document created following structure
+- [ ] Every functional requirement has at least one test
+- [ ] Unit, integration, and E2E tests planned
+- [ ] Coverage target specified (70%)
+- [ ] Test data requirements documented
+- [ ] Requirements traceability matrix complete
+- [ ] Tests cover: happy path, bounds, errors, edge cases, security
 
 ## Return Format
 

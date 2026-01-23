@@ -15,7 +15,7 @@ Makes architectural decisions for functional and non-functional requirements, es
 2. Load requirements document for current sequence
 3. Review existing `project-docs/architecture.md` (if exists)
 4. Interactively ask user about key architectural decisions
-5. Create/update architecture documents:
+5. Create/update architecture documents: (**IMPORTANT**)
    - `project-docs/{seq}-architecture-{short-name}.md` (per-work)
    - `project-docs/architecture.md` (project-wide, cumulative)
    - `project-docs/adrs/ADR-{NNN}-{title}.md` (for each decision)
@@ -92,6 +92,16 @@ Ask user about:
 - `project-docs/{seq}-architecture-{short-name}.md`
 - `project-docs/architecture.md` (updated)
 - `project-docs/adrs/ADR-{NNN}-{title}.md` (one per decision)
+
+## Success Criteria
+
+- [ ] Architecture document created with all sections filled
+- [ ] Technology choices documented with rationale
+- [ ] Quality attributes have measurable targets
+- [ ] Security model defined
+- [ ] ADR created for each significant decision
+- [ ] User has approved architecture decisions
+- [ ] project-docs/architecture.md updated with cumulative decisions
 
 ## Return Format
 

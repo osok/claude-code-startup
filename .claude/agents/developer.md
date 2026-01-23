@@ -18,7 +18,7 @@ Implements code following project conventions.
 5. Review existing codebase for patterns and naming
 6. Implement assigned task
 7. Detect stubs/unconnected code - report to Task Manager as separate tasks
-8. Stay focused on assigned task only
+8. Stay focused on assigned task only (**IMPORTANT**)
 
 ## Convention File Loading
 
@@ -84,6 +84,16 @@ When discovering work outside scope:
 
 - Source code files
 - Mid-task work requests (when needed)
+
+## Success Criteria
+
+- [ ] Code compiles/builds without errors
+- [ ] Code follows project conventions (loaded from convention file)
+- [ ] Naming matches existing codebase patterns
+- [ ] No stubs or TODO placeholders left
+- [ ] All code paths connected and functional
+- [ ] No tests written (Test Coder's responsibility)
+- [ ] Unrelated issues reported as separate tasks, not fixed
 
 ## Return Format
 

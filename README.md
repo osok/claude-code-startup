@@ -2,321 +2,153 @@
 
 A starter template for building applications with Claude Code using specialized sub-agents for structured development workflows.
 
-## Overview
+## What This Template Does
 
-This template provides a complete set of sub-agents designed to orchestrate application development through distinct phases: requirements gathering, architecture, design, implementation, testing, and documentation. Each agent has a focused responsibility and communicates through structured handoffs managed by the Task Manager.
+This template gives you a team of AI agents that work together to build your application. Instead of one AI doing everything, specialized agents handle different aspects of development:
 
-## Features
+- **Requirements Agent** asks clarifying questions to understand what you want
+- **Architect Agent** makes technology and structure decisions
+- **Designer Agent** creates detailed designs before coding starts
+- **Developer Agent** writes the actual code following best practices
+- **Test Agents** plan, write, and run tests to catch bugs
+- **Documentation Agent** creates user and developer docs
 
-- **11 Specialized Agents** - Each with defined responsibilities, tools, and outputs
-- **Structured Workflow** - Requirements → Architecture → Design → Implementation → Testing → Documentation
-- **Language Conventions** - Pre-built coding and testing conventions for 6 languages
-- **Task Orchestration** - Task Manager coordinates all agent work with dependency tracking
-- **Document-Based Coordination** - No MCP servers required; agents communicate through markdown
+The **Task Manager** coordinates everything, tracking what's done and what's next.
 
-## Sub-Agent Index
+## What to Expect
 
-| Agent | Purpose | Model |
-|-------|---------|-------|
-| **Requirements** | Interactive requirements elicitation (ISO/IEC/IEEE 29148) | opus |
-| **Architect** | Architectural decisions, ADRs, project-wide standards | opus |
-| **Designer** | Design docs from requirements (IEEE 1016, Mermaid UML) | opus |
-| **Task Manager** | Orchestrates workflow, tracks tasks, handles inter-agent requests | opus |
-| **Test Designer** | Plans tests based on architecture and design | opus |
-| **Data Agent** | Schemas as source of truth, data dictionaries, migrations | opus |
-| **Deployment** | Environment config, Docker Compose, AWS CDK | opus |
-| **Developer** | Implements code following project conventions | opus |
-| **Test Coder** | Writes test code (unit, integration, E2E) | opus |
-| **Test Runner** | Executes tests, debugs failures, routes issues | opus |
-| **Documentation** | User docs, developer docs, code documentation | opus |
+### The Workflow
 
-## Folder Structure
+1. **You describe what you want to build** - in plain language
+2. **Requirements Agent interviews you** - asks questions to clarify scope, constraints, and priorities
+3. **Architect makes decisions** - chooses technologies, defines structure, documents rationale
+4. **Designer creates blueprints** - detailed designs with diagrams before any code is written
+5. **Developer implements** - writes code following the designs and project conventions
+6. **Tests are written and run** - catches bugs early, routes failures to the right agent to fix
+7. **Documentation is generated** - user guides and developer docs
 
-```
-your-project/
-├── .claude/
-│   └── agents/            # Sub-agent definitions (copy from template)
-├── Claude.md              # Project index and memory (customize per project)
-├── conventions/           # Language-specific coding conventions
-│   ├── developer/         # Code style (golang, java, python, react, swift, typescript)
-│   └── testing/           # Test conventions (golang, java, python, react, swift, typescript)
-├── developer-docs/        # Documentation for project contributors
-├── user-docs/             # Documentation for end users
-└── project-docs/
-    ├── adrs/              # Architecture Decision Records
-    ├── schemas/           # Data schemas (source of truth)
-    └── *.md               # Requirements, designs, task lists
-```
+### What You Get
 
-## Setup
+- **Structured requirements document** following ISO/IEC/IEEE 29148 standards
+- **Architecture Decision Records (ADRs)** explaining why choices were made
+- **Design documents** with Mermaid UML diagrams
+- **Clean, tested code** following language-specific conventions
+- **Comprehensive tests** (unit, integration, E2E)
+- **Documentation** for users and developers
 
-### 1. Create Your Project from Template
+### How Long Does It Take?
 
-**Option A: GitHub Web UI**
+It depends on complexity. A simple feature might complete in one session. A full application takes multiple sessions - use `continue` to resume where you left off.
 
-1. Click the green **"Use this template"** button at the top of the repository
-2. Select **"Create a new repository"**
-3. Name your repository and click **"Create repository"**
-4. Clone your new repository locally:
-   ```bash
-   git clone https://github.com/YOUR-USERNAME/your-new-project.git
-   cd your-new-project
-   ```
+## Quick Start
 
-**Option B: GitHub CLI**
+### 1. Create Your Project
 
+**GitHub Web UI:**
+1. Click **"Use this template"** → **"Create a new repository"**
+2. Name it and create
+3. Clone locally
+
+**Or GitHub CLI:**
 ```bash
-gh repo create my-new-project --template osok/claude-code-startup --clone
-cd my-new-project
+gh repo create my-project --template osok/claude-code-startup --clone
+cd my-project
 ```
 
-**Option C: Manual Clone**
+### 2. Initialize
 
-```bash
-git clone https://github.com/osok/claude-code-startup.git my-new-project
-cd my-new-project
-rm -rf .git
-git init
-git add .
-git commit -m "Initial commit from claude-code-startup template"
-```
-
-### 2. Customize Claude.md
-
-Edit `Claude.md` to reflect your project:
-
-1. Update the project name and overview
-2. Clear the "Current Work" section
-3. Reset the "Document Sequence Tracker" table
-4. Add project-specific decisions to "Key Decisions & Concepts"
-
-### 3. Create Initial Requirements
-
-In Claude Code, describe what you want to build:
+Open the project in Claude Code and run:
 
 ```
-I want to create requirements for a user authentication system
+initialize
 ```
 
-The Requirements agent will interactively gather requirements and create the document for you.
+This resets the template for your project and asks what you want to build.
 
-## Usage
+### 3. Build
 
-### Starting New Work
+The agents take over from here. They'll ask questions when needed and keep you informed of progress.
 
-Tell Claude Code:
-```
-begin work
-```
+To resume work in a new session:
 
-The Task Manager will:
-1. Read `Claude.md` for context
-2. Load the requirements document
-3. Execute planning (Architect → Designer)
-4. Create the task list
-5. Execute implementation (Test Designer → Data Agent → Developer → Tests → Docs)
-
-### Resuming Work
-
-Tell Claude Code:
 ```
 continue
 ```
 
-The Task Manager will:
-1. Load the current task list
-2. Reset any stale in-progress tasks
-3. Find the next actionable task
-4. Resume the workflow
+## Commands
 
-### Interactive Requirements
+| Command | When to Use |
+|---------|-------------|
+| `initialize` | Once, right after cloning the template |
+| `continue` | To resume work in a new Claude Code session |
 
-To gather requirements interactively, invoke the Requirements agent directly. It will guide you through structured elicitation following ISO/IEC/IEEE 29148 standards.
+## Included Agents
 
-## Workflow Order
+| Agent | What It Does |
+|-------|--------------|
+| **Requirements** | Interviews you to understand what you want to build |
+| **Architect** | Makes technology choices, defines project structure |
+| **Designer** | Creates detailed designs with UML diagrams |
+| **Task Manager** | Coordinates all agents, tracks progress |
+| **Test Designer** | Plans what tests are needed |
+| **Data Agent** | Defines database schemas and data structures |
+| **Deployment** | Sets up Docker, environment configs, infrastructure |
+| **Developer** | Writes application code |
+| **Test Coder** | Writes test code |
+| **Test Runner** | Runs tests, diagnoses failures |
+| **Test Debugger** | Deep debugging across all layers when tests fail |
+| **Documentation** | Writes user guides and developer docs |
 
-The Task Manager orchestrates agents in this order:
+## Language Support
 
-1. **Test Designer** - Plans test approach based on design
-2. **Data Agent** - Creates/updates schemas
-3. **Deployment** - Configures environments
-4. **Developer** - Implements features
-5. **Test Designer** - Reviews and updates test plans
-6. **Test Coder** - Writes test code
-7. **Test Runner** - Executes tests, routes failures
-8. **Documentation** - Generates user and developer docs
+Pre-built coding and testing conventions for 27 technologies:
 
-### Workflow Diagram
+**Backend Languages**
+- Go, Java, Python, TypeScript, Rust, C#/.NET, Ruby, PHP, Kotlin, Scala, Elixir
 
-```mermaid
-flowchart TD
-    subgraph Planning["Planning Phase"]
-        REQ[Requirements Agent]
-        ARCH[Architect Agent]
-        DES[Designer Agent]
-    end
+**Frontend Frameworks**
+- React, Vue, Angular, Svelte, Next.js, Nuxt
 
-    subgraph Implementation["Implementation Phase"]
-        TD[Test Designer]
-        DA[Data Agent]
-        DEP[Deployment Agent]
-        DEV[Developer Agent]
-        TD2[Test Designer Review]
-        TC[Test Coder]
-        TR[Test Runner]
-        DOC[Documentation Agent]
-    end
+**Mobile**
+- Swift, Kotlin Android, Flutter/Dart, React Native
 
-    TM[Task Manager]
+**Infrastructure & DevOps**
+- Terraform, Kubernetes, Bash/Shell, SQL
 
-    %% Planning flow
-    REQ -->|requirements doc| TM
-    TM -->|begin work| ARCH
-    ARCH -->|ADRs, architecture| TM
-    TM --> DES
-    DES -->|design doc| TM
+**Emerging & Specialized**
+- Zig, Solidity
 
-    %% Implementation flow
-    TM --> TD
-    TD -->|test plan| TM
-    TM --> DA
-    DA -->|schemas| TM
-    TM --> DEP
-    DEP -->|env config| TM
-    TM --> DEV
-    DEV -->|code| TM
-    TM --> TD2
-    TD2 -->|updated tests| TM
-    TM --> TC
-    TC -->|test code| TM
-    TM --> TR
-    TR -->|results| TM
-    TM --> DOC
-    DOC -->|docs| TM
+The Developer and Test Coder agents automatically use the right conventions for your tech stack.
 
-    %% Completion states
-    TM -->|all complete| DONE[Done]
+## Project Structure
 
-    %% Blocked handling
-    DEV -.->|blocked| TM
-    TC -.->|blocked| TM
-    TM -.->|creates blocking task| DA
-    TM -.->|creates blocking task| DEV
+After initialization, your project will have:
 
-    %% Test failure routing
-    TR -.->|code bug| TM
-    TM -.->|route fix| DES
-    DES -.->|design update| TM
-    TM -.->|schema change| DA
-    TM -.->|implement fix| DEV
-
-    TR -.->|test bug| TM
-    TM -.->|fix test| TC
-
-    style TM fill:#f9f,stroke:#333,stroke-width:3px
-    style DONE fill:#9f9,stroke:#333
+```
+your-project/
+├── .claude/agents/       # Agent definitions (don't modify)
+├── Claude.md             # Project memory and status
+├── conventions/          # Coding standards by language
+├── project-docs/         # Requirements, designs, task lists
+│   ├── adrs/             # Architecture decisions
+│   └── schemas/          # Data schemas
+├── developer-docs/       # Docs for contributors
+└── user-docs/            # Docs for end users
 ```
 
-### Agent Result Flow
+## How It Works Under the Hood
 
-```mermaid
-flowchart LR
-    subgraph Agent["Any Agent"]
-        WORK[Do Work]
-        RESULT[Return Result]
-    end
+1. **Document-based coordination** - Agents communicate through markdown files, not complex APIs
+2. **Task Manager as orchestrator** - One agent controls the workflow and task list
+3. **Schemas as source of truth** - Data Agent maintains schemas that all code references
+4. **Smart failure routing** - When tests fail, the system figures out which agent should fix it
 
-    subgraph TaskManager["Task Manager"]
-        PARSE[Parse Result]
-        UPDATE[Update Task List]
-        ROUTE[Route Next]
-    end
+## Tips for Best Results
 
-    WORK --> RESULT
-    RESULT -->|status: complete| PARSE
-    RESULT -->|status: blocked| PARSE
-    RESULT -->|status: failed| PARSE
-
-    PARSE --> UPDATE
-
-    UPDATE -->|complete| ROUTE
-    ROUTE -->|next task| WORK
-
-    UPDATE -->|blocked| CREATE[Create Blocking Task]
-    CREATE --> ROUTE
-
-    UPDATE -->|failed| ASK[Ask User]
-    ASK -->|direction| ROUTE
-
-    style TaskManager fill:#f9f,stroke:#333
-```
-
-### Test Failure Routing
-
-```mermaid
-flowchart TD
-    TR[Test Runner]
-    TM[Task Manager]
-
-    TR -->|categorized failures| TM
-
-    TM -->|code bug| CB[Designer → Data Agent → Developer]
-    TM -->|test bug| TC[Test Coder]
-    TM -->|environment| DEP[Deployment Agent]
-    TM -->|test data| TD[Test Coder]
-    TM -->|timing/race| BOTH[Developer + Test Coder]
-    TM -->|schema mismatch| SM[Data Agent → Developer]
-
-    CB -->|fixed| TM
-    TC -->|fixed| TM
-    DEP -->|fixed| TM
-    TD -->|fixed| TM
-    BOTH -->|fixed| TM
-    SM -->|fixed| TM
-
-    TM -->|re-run tests| TR
-
-    style TM fill:#f9f,stroke:#333,stroke-width:2px
-    style TR fill:#ff9,stroke:#333
-```
-
-## Conventions
-
-Pre-built conventions are included for:
-
-| Language | Developer | Testing |
-|----------|-----------|---------|
-| Go | `conventions/developer/golang.md` | `conventions/testing/golang.md` |
-| Java | `conventions/developer/java.md` | `conventions/testing/java.md` |
-| Python | `conventions/developer/python.md` | `conventions/testing/python.md` |
-| React | `conventions/developer/react.md` | `conventions/testing/react.md` |
-| Swift | `conventions/developer/swift.md` | `conventions/testing/swift.md` |
-| TypeScript | `conventions/developer/typescript.md` | `conventions/testing/typescript.md` |
-
-Add new conventions by creating files in the appropriate folder.
-
-## Task List Format
-
-Task lists track work with dependency management:
-
-```markdown
-| ID | Task | Status | Blocked-By | Agent | Notes |
-|----|------|--------|------------|-------|-------|
-| T001 | Create schema | complete | - | Data Agent | |
-| T002 | Implement API | blocked | T004 | Developer | Needs auth |
-| T003 | Write tests | pending | T002 | Test Coder | |
-| T004 | Setup auth | in-progress | - | Developer | Created for T002 |
-```
-
-**Statuses:** `pending` | `in-progress` | `blocked` | `complete`
-
-## Key Concepts
-
-- **Task Manager as Sole Writer** - Only Task Manager modifies task lists; other agents return structured output
-- **Schemas as Source of Truth** - Data Agent maintains schemas; all developers reference these
-- **Test Runner Routing** - App bugs route through Designer → Data Agent → Developer; test bugs go to Test Coder
-- **Mid-Task Requests** - Agents can request blocking work; Task Manager queues and resumes appropriately
-- **Chain Depth Limit** - Maximum 3 levels of blocking dependencies to prevent infinite loops
+- **Be specific in requirements** - The more detail you provide upfront, the better the output
+- **Answer agent questions thoughtfully** - They ask for a reason
+- **Review designs before implementation** - Easier to change a design than refactor code
+- **Use `continue` liberally** - Sessions can be interrupted; progress is saved
 
 ## Related
 

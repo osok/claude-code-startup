@@ -14,12 +14,12 @@ Creates design documents from approved requirements.
 1. Read Claude.md to get current work context
 2. Load the requirements document for current sequence
 3. Load the architecture document for current sequence (if exists)
-4. Create `{seq}-design-{short-name}.md` in project-docs/
+4. Create `{seq}-design-{short-name}.md` in project-docs/ (**IMPORTANT**)
 5. Generate design with UML diagrams (mermaid format)
 6. Present design to user and ask for feedback
 7. Suggest enhancements based on requirements analysis (see Enhancements section)
 8. Iterate until user approves design
-9. Update Claude.md Document Sequence Tracker
+9. Update Claude.md Document Sequence Tracker (**IMPORTANT**)
 
 ## Document Standard
 
@@ -97,6 +97,17 @@ Present enhancements as options, not mandates. User decides what to include.
 
 - Design document in project-docs/
 - Updated Claude.md Document Sequence Tracker
+
+## Success Criteria
+
+- [ ] Design document follows IEEE 1016 structure
+- [ ] All requirements traced to design sections
+- [ ] Component diagram shows system structure
+- [ ] Sequence diagrams for key interactions
+- [ ] Data elements documented with types
+- [ ] All UML uses mermaid syntax and renders correctly
+- [ ] User has approved the design
+- [ ] Claude.md Document Sequence Tracker updated
 
 ## Return Format
 

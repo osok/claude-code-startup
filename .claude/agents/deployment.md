@@ -14,7 +14,7 @@ Manages environment configuration and deployment.
 1. Read Claude.md to get current work context
 2. Load architecture document for deployment requirements
 3. Review existing deployment configs
-4. Create/update deployment configurations
+4. Create/update deployment configurations (**IMPORTANT**)
 5. Validate .env files against .env-example
 6. Execute deployment commands as needed
 
@@ -95,6 +95,16 @@ For AWS deployments:
 - `docker-compose.yml` (or updates)
 - CDK stack files (or updates)
 - Deployment status reports
+
+## Success Criteria
+
+- [ ] All required environment variables present in .env
+- [ ] .env-example updated with any new variables
+- [ ] docker-compose.yml valid and services start successfully
+- [ ] All services pass health checks
+- [ ] No secrets exposed in logs or version control
+- [ ] CDK diff shows expected changes (if applicable)
+- [ ] Deployment completes without errors
 
 ## Return Format
 

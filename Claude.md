@@ -10,17 +10,19 @@ A collection of specialized sub-agents designed to assist with application desig
 
 <!-- This section tracks active work. Clear when complete. -->
 
-**Seq:** 002
-**Name:** task-orchestration
-**Status:** Requirements
+**Seq:** -
+**Name:** -
+**Status:** Starting
 
-**Current:** Drafting requirements for Task Manager orchestration capabilities
+**Current:** Awaiting project initialization
 
 ---
 
 ## Sub-Agent Index
 
 <!-- Populated as agents are designed and built -->
+
+## Sub-Agent Index
 
 | Agent Name | Purpose | Status | Docs |
 |------------|---------|--------|------|
@@ -34,7 +36,35 @@ A collection of specialized sub-agents designed to assist with application desig
 | Developer | Implements code following project conventions | Defined | .claude/agents/developer.md |
 | Test Coder | Writes test code (unit, integration, E2E) | Defined | .claude/agents/test-coder.md |
 | Test Runner | Executes tests, debugs failures, routes issues | Defined | .claude/agents/test-runner.md |
+| Test Debugger | Deep debugging across all layers; creates diagnosis for Task Manager routing | Defined | .claude/agents/test-debugger.md |
 | Documentation | User docs, developer docs, code documentation | Defined | .claude/agents/documentation.md |
+
+---
+
+## Agent Workflow
+
+Standard sequence for end-to-end feature development:
+
+| Step | Agent(s) | Notes |
+|------|----------|-------|
+| 1 | @requirements | Elicit and document requirements (ISO 29148) |
+| 2 | @architect | Architectural decisions, ADRs, constraints |
+| 3 | @designer | Design docs from approved requirements |
+| 4 | @test-designer, @data Agent | Plan tests; define schemas (parallel) |
+| 5 | @task -manager | Create task list, orchestrate workflow |
+| 6 | @developer(s) | Implement code (parallel per tech stack: React, Python, etc.) |
+| 7 | @test-designer | Revisit test plan after code complete |
+| 8 | @documentation, @deployment | User/dev docs; environment setup (parallel) |
+| 9 | @test-coder → @test-runner | Write & run: unit → integration → E2E (Chrome DevTools MCP) |
+| 10 | @test-debugger | On failure: diagnose across all layers, route to appropriate agent |
+| 11 | @task-manager → Agent | Execute fix (Designer, Data, Developer, etc.) |
+| 12 | *Loop to Step 9* | Repeat until all tests pass |
+| 13 | @documentation | Final documentation updates |
+
+**Test Debugger Output:** Creates a diagnosis report including:
+- Root cause analysis (design flaw, schema issue, code bug, config error)
+- Recommended agent to fix (Designer, Data Agent, Developer, Deployment, etc.)
+- Specific details for the fixing agent
 
 ---
 
@@ -49,8 +79,7 @@ A collection of specialized sub-agents designed to assist with application desig
 
 | Seq | Short Name | Requirements | Design | Task List | Status |
 |-----|------------|--------------|--------|-----------|--------|
-| 001 | dev-agents | Approved | Approved | Complete | Done |
-| 002 | task-orchestration | Draft | - | - | Requirements |
+| - | - | - | - | - | - |
 
 ---
 
@@ -107,6 +136,7 @@ sub-agents/
 
 | Command | Meaning |
 |---------|---------|
+| `initialize` | Reset project: clear README, reset Claude.md to starting state, ask what to build |
 | `continue` | Resume current work using task-list to determine next tasks |
 
 ---
