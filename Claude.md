@@ -37,6 +37,9 @@ A collection of specialized sub-agents designed to assist with application desig
 | Test Coder | Writes test code (unit, integration, E2E) | Defined | .claude/agents/test-coder.md |
 | Test Runner | Executes tests, debugs failures, routes issues | Defined | .claude/agents/test-runner.md |
 | Test Debugger | Deep debugging across all layers; creates diagnosis for Task Manager routing | Defined | .claude/agents/test-debugger.md |
+| Code Reviewer - Requirements | Reviews code completeness against requirements | Defined | .claude/agents/code-reviewer-requirements.md |
+| Code Reviewer - Security | Reviews code for OWASP vulnerabilities | Defined | .claude/agents/code-reviewer-security.md |
+| Code Reviewer - Integration | Reviews for stubs, incomplete code, wiring gaps | Defined | .claude/agents/code-reviewer-integration.md |
 | Documentation | User docs, developer docs, code documentation | Defined | .claude/agents/documentation.md |
 
 ---
@@ -50,16 +53,19 @@ Standard sequence for end-to-end feature development:
 | 1 | @requirements | Elicit and document requirements (ISO 29148) |
 | 2 | @architect | Architectural decisions, ADRs, constraints |
 | 3 | @designer | Design docs from approved requirements |
-| 4 | @test-designer, @data Agent | Plan tests; define schemas (parallel) |
-| 5 | @task -manager | Create task list, orchestrate workflow |
-| 6 | @developer(s) | Implement code (parallel per tech stack: React, Python, etc.) |
-| 7 | @test-designer | Revisit test plan after code complete |
-| 8 | @documentation, @deployment | User/dev docs; environment setup (parallel) |
-| 9 | @test-coder → @test-runner | Write & run: unit → integration → E2E (Chrome DevTools MCP) |
-| 10 | @test-debugger | On failure: diagnose across all layers, route to appropriate agent |
-| 11 | @task-manager → Agent | Execute fix (Designer, Data, Developer, etc.) |
-| 12 | *Loop to Step 9* | Repeat until all tests pass |
-| 13 | @documentation | Final documentation updates |
+| 4 | @test-designer, @data-agent | Plan tests; define schemas (parallel) |
+| 5 | @task-manager | Create task list, orchestrate workflow |
+| 6 | @developer(s) | Implement code (parallel per tech stack) |
+| 7 | @code-reviewer-requirements, @code-reviewer-security, @code-reviewer-integration | Code review phase (parallel) |
+| 8 | @developer(s) | Fix any gaps, vulnerabilities, or stubs found |
+| 9 | *Loop to Step 7* | Re-review until all issues resolved |
+| 10 | @test-designer | Revisit test plan after code complete |
+| 11 | @documentation, @deployment | User/dev docs; environment setup (parallel) |
+| 12 | @test-coder → @test-runner | Write & run: unit → integration → E2E |
+| 13 | @test-debugger | On failure: diagnose across all layers |
+| 14 | @task-manager → Agent | Execute fix (Designer, Data, Developer, etc.) |
+| 15 | *Loop to Step 12* | Repeat until all tests pass |
+| 16 | @documentation | Final documentation updates |
 
 **Test Debugger Output:** Creates a diagnosis report including:
 - Root cause analysis (design flaw, schema issue, code bug, config error)

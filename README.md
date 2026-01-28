@@ -97,6 +97,9 @@ continue
 | **Test Coder** | Writes test code |
 | **Test Runner** | Runs tests, diagnoses failures |
 | **Test Debugger** | Deep debugging across all layers when tests fail |
+| **Code Reviewer - Requirements** | Verifies code completeness against requirements |
+| **Code Reviewer - Security** | Checks for OWASP vulnerabilities |
+| **Code Reviewer - Integration** | Finds stubs, incomplete code, wiring gaps |
 | **Documentation** | Writes user guides and developer docs |
 
 ## Language Support

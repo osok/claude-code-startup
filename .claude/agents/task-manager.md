@@ -58,10 +58,18 @@ Seq: {NNN} | Requirements: {req-doc} | Design: {design-doc}
 2. Data Agent
 3. Deployment Agent
 4. Developer Agent(s)
-5. Test Designer Agent (review/update)
-6. Test Coder Agent(s)
-7. Test Runner Agent
-8. Documentation Agent(s)
+5. **Code Review Phase** (all three run, can be parallel):
+   - Code Reviewer - Requirements Agent
+   - Code Reviewer - Security Agent
+   - Code Reviewer - Integration Agent
+6. **Fix Phase** (if reviewers found issues):
+   - Create tasks for each gap/vulnerability/stub
+   - Route to appropriate agent (Developer, Data Agent, etc.)
+   - Re-run affected reviewers after fixes
+7. Test Designer Agent (review/update)
+8. Test Coder Agent(s)
+9. Test Runner Agent
+10. Documentation Agent(s)
 
 ## Structured Output Parsing
 
@@ -142,6 +150,27 @@ If circular dependency detected:
 | App code fix needed | Developer Agent |
 | Test code fix needed | Test Coder Agent |
 | Documentation needed | Documentation Agent |
+| Requirements gap found | Developer Agent (implement missing feature) |
+| Security vulnerability found | Developer Agent (with security guidance) |
+| Stub/incomplete code found | Developer Agent (complete implementation) |
+| Wiring gap found | Developer Agent (connect components) |
+
+## Code Review Handling
+
+When code reviewers return results:
+
+### Requirements Reviewer
+- If `gaps_found: true`: Create task per gap, assign to Developer
+- Critical gaps block testing phase
+
+### Security Reviewer
+- If `critical_count > 0` or `high_count > 0`: Create fix tasks, block testing
+- Medium/Low can be tracked but don't block
+
+### Integration Reviewer
+- If `stubs_found: true`: Create task per stub, assign to Developer
+- If `wiring_gaps_found: true`: Create task per gap, assign to Developer
+- All stubs must be removed before testing
 
 ## Test Failure Routing
 
